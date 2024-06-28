@@ -1,0 +1,48 @@
+.mt {
+    margin-top: 20px !important;
+}
+.mr {
+    margin-right: 7px !important;
+}
+.m-2 {
+    margin-bottom: 4px !important;
+}
+@media (max-width: 768px) {
+    .flex-col {
+        flex-direction: column !important;
+        justify-content: space-around; 
+        align-items: flex-end; 
+    }
+}
+.done-icon-button {
+    background: white !important;
+    border: 1px solid green !important;
+    color: green !important;
+    transition: all 0.3s ease;
+}
+.done-icon-button:hover {
+    background: green !important;
+    color: white !important;
+}
+
+.edit-icon-button {
+    background: white !important;
+    border: 1px solid blue !important;
+    color: blue !important;
+    transition: all 0.3s ease;
+}
+.edit-icon-button:hover {
+    background: blue !important;
+    color: white !important;
+
+}
+.delete-icon-button {
+    background: white !important;
+    border: 1px solid red !important;
+    color: red !important;
+    transition: all 0.3s ease;
+}
+.delete-icon-button:hover {
+    background: red !important;
+    color: white !important;
+}
