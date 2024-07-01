@@ -9,7 +9,7 @@ const todosArray = [
     {
         id: uuidv4(),
         input: 'Learn React',
-        isCompleted: false
+        isCompleted: false,
     },
     {
         id: uuidv4(),
@@ -41,7 +41,7 @@ function App() {
                 {dark ? <HiSun /> : <HiMoon />}
             </button>
             <TodosContext.Provider value={{ todos, setTodos }}>
-              <TodoList onHeightChange={handleTodoListHeightChange} />
+                <TodoList onHeightChange={handleTodoListHeightChange} />
             </TodosContext.Provider> 
         </div>
     );
