@@ -13,13 +13,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function TodoList({ onHeightChange }) {
     const [selectedFilter, setSelectedFilter] = useState('all');
-    const { todos, setTodos } = useContext(TodosContext);
+    const {todosObject, emptySnackbarObject, deleteSnackbarObject, editSnackbarObject, completedSnackbarObject} = useContext(TodosContext);
+    const [todos, setTodos] = todosObject;
+    const [snackbarEmpty, setSnackbarEmpty] = emptySnackbarObject;
+    const [deleteSnackbar, setDeleteSnackbar] = deleteSnackbarObject;
+    const [editSnackbar, setEditSnackbar] = editSnackbarObject;
+    const [completedSnackbar, setCompletedSnackbar] = completedSnackbarObject;
+    const [snackbarAdd, setSnackbarAdd] = useState(false);
     const [todoInput, setTodoInput] = useState("");
-    const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     function handleAdd() {
         if (todoInput === "") {
-            setSnackbarOpen(true);
+            setSnackbarEmpty(true);
         } else {
             const newTodo = {
                 id: uuidv4(),
@@ -29,16 +34,18 @@ export default function TodoList({ onHeightChange }) {
             };
             setTodos([...todos, newTodo]);
             setTodoInput("");
+            setSnackbarAdd(true);
         }
     }
 
+
     const filteredTodos = todos.filter(todo => {
         if (selectedFilter === 'done') return todo.isCompleted;
-        if (selectedFilter === 'not-done') return !todo.isCompleted;
-        return true;
+        else if (selectedFilter === 'not-done') return !todo.isCompleted;
+        else return true;
     });
 
-    const todosJsx = filteredTodos.map((t) => <Todo key={t.id} todo={t} />);
+    const todosJsx = filteredTodos.map((t) => <Todo key={t.id} todo={t}/>);
 
     useEffect(() => {
         const todoListElement = document.getElementById('todo-list');
@@ -48,16 +55,31 @@ export default function TodoList({ onHeightChange }) {
         }
     }, [onHeightChange]);
 
-    const handleFilterChange = (value) => {
-        setSelectedFilter(value);
-    };
+    function handleFilterChange(value) {
+    setSelectedFilter(value);
+    }
 
-    const handleCloseSnackbar = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setSnackbarOpen(false);
-    };
+    function handleCloseSnackbarEmpty() {
+        setSnackbarEmpty(false);
+    }
+
+    function handleCloseSnackbarAdd() {
+        setSnackbarAdd(false);
+    }
+
+    function handleCloseDeleteSnackbar() {
+        setDeleteSnackbar(false);
+    }
+
+    function handleCloseEditSnackbar() {
+        setEditSnackbar(false);
+    }
+
+    function handleCloseCompletedSnackbar() {
+        setCompletedSnackbar(false);
+    }
+
+    
 
     return (
         <>
@@ -130,14 +152,65 @@ export default function TodoList({ onHeightChange }) {
 
             {/* Snackbar for empty input notification */}
             <Snackbar 
-                open={snackbarOpen} autoHideDuration={2000} 
-                onClose={handleCloseSnackbar} 
+                open={snackbarEmpty} 
+                autoHideDuration={2000} 
+                onClose={handleCloseSnackbarEmpty} 
                 anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
                 <Alert variant="filled" severity="error">
                     You can't add an empty task !
                 </Alert>
             </Snackbar>
             {/* Snackbar for empty input notification */}
+
+            {/* Snackbar for adding task notification */}
+            <Snackbar 
+                open={snackbarAdd} 
+                autoHideDuration={2000} 
+                onClose={handleCloseSnackbarAdd} 
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+                <Alert variant="filled" severity="success">
+                    Task is added successfully
+                </Alert>
+            </Snackbar>
+            {/* Snackbar for empty input notification */}
+
+            {/* Snackbar for delete notification */}
+            <Snackbar 
+                open={deleteSnackbar} 
+                autoHideDuration={2000} 
+                onClose={handleCloseDeleteSnackbar} 
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+                <Alert variant="filled" severity="error">
+                    Task is deleted successfully 
+                </Alert>
+            </Snackbar>
+            {/* Snackbar for delete notification */}
+
+            {/* Snackbar for successful edit notification */}
+            <Snackbar 
+                open={editSnackbar} 
+                autoHideDuration={2000} 
+                onClose={handleCloseEditSnackbar} 
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+                <Alert variant="filled" severity="info">
+                    Task is edited successfully 
+                </Alert>
+            </Snackbar>
+            {/* Snackbar for successful edit notification */}
+
+            {/* Snackbar for completed notification */}
+            <Snackbar 
+                open={completedSnackbar} 
+                autoHideDuration={2000} 
+                onClose={handleCloseCompletedSnackbar} 
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            >
+                <Alert variant="filled" severity="success">
+                    Task is added to completed tasks successfully 
+                </Alert>
+            </Snackbar>
+            {/* Snackbar for completed notification */}
         </>
     );
 }

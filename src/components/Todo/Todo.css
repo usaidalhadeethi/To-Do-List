@@ -10,8 +10,6 @@
 @media (max-width: 768px) {
     .todoBtn {
         padding: 4px !important;
-        /* height: 30px;
-        width: 30px; */
     }
 }
 @media (max-width: 768px) {
@@ -31,7 +29,7 @@
     background-color: #5A5F67; /* Slightly darker shade */
 }
 
-.todo-item:hover::after {
+.input:hover::after {
     content: 'Click to change color';
     position: absolute;
     top: -25px;
@@ -45,10 +43,9 @@
     white-space: nowrap;
 }
 
+
 .done-icon-button {
-    background: white !important;
     border: 1px solid green !important;
-    color: green !important;
     transition: all 0.3s ease;
 }
 .done-icon-button:hover {

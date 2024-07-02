@@ -20,6 +20,10 @@ const todosArray = [
 
 function App() {
     const [todos, setTodos] = useState(todosArray);
+    const [snackbarEmpty, setSnackbarEmpty] = useState(false);
+    const [deleteSnackbar, setDeleteSnackbar] = useState(false);
+    const [editSnackbar, setEditSnackbar] = useState(false);
+    const [completedSnackbar, setCompletedSnackbar] = useState(false);
     const [dark, setDark] = useState(false);
     const [isCentered, setIsCentered] = useState(false);
 
@@ -40,7 +44,13 @@ function App() {
             >
                 {dark ? <HiSun /> : <HiMoon />}
             </button>
-            <TodosContext.Provider value={{ todos, setTodos }}>
+            <TodosContext.Provider value={{ 
+                todosObject : [todos, setTodos], 
+                emptySnackbarObject: [snackbarEmpty, setSnackbarEmpty],
+                deleteSnackbarObject: [deleteSnackbar, setDeleteSnackbar],
+                editSnackbarObject: [editSnackbar, setEditSnackbar],
+                completedSnackbarObject: [completedSnackbar, setCompletedSnackbar]
+            }}>
                 <TodoList onHeightChange={handleTodoListHeightChange} />
             </TodosContext.Provider> 
         </div>
