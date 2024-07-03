@@ -16,13 +16,13 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { TodosContext } from '../../contexts/TodosContext';
 
-export default function Todo({ todo, handleCheck }) {
+export default function Todo({ todo }) {
     const {todosObject, emptySnackbarObject, deleteSnackbarObject, editSnackbarObject, completedSnackbarObject} = useContext(TodosContext);
     const [todos, setTodos] = todosObject;
-    const [snackbarEmpty, setSnackbarEmpty] = emptySnackbarObject;
-    const [deleteSnackbar, setDeleteSnackbar] = deleteSnackbarObject;
-    const [editSnackbar, setEditSnackbar] = editSnackbarObject;
-    const [completedSnackbar, setCompletedSnackbar] = completedSnackbarObject;
+    const [, setSnackbarEmpty] = emptySnackbarObject;
+    const [, setDeleteSnackbar] = deleteSnackbarObject;
+    const [, setEditSnackbar] = editSnackbarObject;
+    const [, setCompletedSnackbar] = completedSnackbarObject;
     const [colorModal, setColorModal] = useState(false);
     const [editDialog, setEditDialog] = useState(false);
     const [backgroundColor, setBackgroundColor] = useState(todo.backgroundColor || "#686D76");

@@ -51,7 +51,7 @@ function App() {
                 editSnackbarObject: [editSnackbar, setEditSnackbar],
                 completedSnackbarObject: [completedSnackbar, setCompletedSnackbar]
             }}>
-                <TodoList onHeightChange={handleTodoListHeightChange} />
+                <TodoList onHeightChange={handleTodoListHeightChange}/>
             </TodosContext.Provider> 
         </div>
     );

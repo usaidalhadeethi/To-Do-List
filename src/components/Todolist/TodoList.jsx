@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import './TodoList.css';
 import Todo from '../Todo/Todo';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,7 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function TodoList({ onHeightChange }) {
     const [selectedFilter, setSelectedFilter] = useState('all');
-    const {todosObject, emptySnackbarObject, deleteSnackbarObject, editSnackbarObject, completedSnackbarObject} = useContext(TodosContext);
+    const { todosObject, emptySnackbarObject, deleteSnackbarObject, editSnackbarObject, completedSnackbarObject } = useContext(TodosContext);
     const [todos, setTodos] = todosObject;
     const [snackbarEmpty, setSnackbarEmpty] = emptySnackbarObject;
     const [deleteSnackbar, setDeleteSnackbar] = deleteSnackbarObject;
@@ -22,10 +22,10 @@ export default function TodoList({ onHeightChange }) {
     const [snackbarAdd, setSnackbarAdd] = useState(false);
     const [todoInput, setTodoInput] = useState("");
 
-    useEffect (() => {
-        const storageTodos = JSON.parse(localStorage.getItem('todos'));
-        setTodos (storageTodos);
-    }, [])
+    useEffect(() => {
+        const storageTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        setTodos(storageTodos);
+    }, [setTodos]);
 
     function handleAdd() {
         if (todoInput === "") {
@@ -38,21 +38,21 @@ export default function TodoList({ onHeightChange }) {
             };
             const updatedTodos = [...todos, newTodo];
             setTodos(updatedTodos);
-            localStorage.setItem ("todos", JSON.stringify(updatedTodos))
+            localStorage.setItem("todos", JSON.stringify(updatedTodos));
             setTodoInput("");
             setSnackbarAdd(true);
         }
     }
 
+    const filteredTodos = useMemo(() => {
+        return todos.filter(todo => {
+            if (selectedFilter === 'done') return todo.isCompleted;
+            else if (selectedFilter === 'not-done') return !todo.isCompleted;
+            else return true;
+        });
+    }, [todos, selectedFilter]);
 
-    const filteredTodos = todos.filter(todo => {
-        console.log("rere");
-        if (selectedFilter === 'done') return todo.isCompleted;
-        else if (selectedFilter === 'not-done') return !todo.isCompleted;
-        else return true;
-    });
-
-    const todosJsx = filteredTodos.map((t) => <Todo key={t.id} todo={t}/>);
+    const todosJsx = filteredTodos.map((t) => <Todo key={t.id} todo={t} />);
 
     useEffect(() => {
         const todoListElement = document.getElementById('todo-list');
@@ -63,7 +63,7 @@ export default function TodoList({ onHeightChange }) {
     }, [onHeightChange]);
 
     function handleFilterChange(value) {
-    setSelectedFilter(value);
+        setSelectedFilter(value);
     }
 
     function handleCloseSnackbarEmpty() {
@@ -85,8 +85,6 @@ export default function TodoList({ onHeightChange }) {
     function handleCloseCompletedSnackbar() {
         setCompletedSnackbar(false);
     }
-
-    
 
     return (
         <>
@@ -158,11 +156,11 @@ export default function TodoList({ onHeightChange }) {
             </Container>
 
             {/* Snackbar for empty input notification */}
-            <Snackbar 
-                open={snackbarEmpty} 
-                autoHideDuration={2000} 
-                onClose={handleCloseSnackbarEmpty} 
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+            <Snackbar
+                open={snackbarEmpty}
+                autoHideDuration={2000}
+                onClose={handleCloseSnackbarEmpty}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
                 <Alert variant="filled" severity="error">
                     You can't add an empty task !
                 </Alert>
@@ -170,11 +168,11 @@ export default function TodoList({ onHeightChange }) {
             {/* Snackbar for empty input notification */}
 
             {/* Snackbar for adding task notification */}
-            <Snackbar 
-                open={snackbarAdd} 
-                autoHideDuration={2000} 
-                onClose={handleCloseSnackbarAdd} 
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+            <Snackbar
+                open={snackbarAdd}
+                autoHideDuration={2000}
+                onClose={handleCloseSnackbarAdd}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
                 <Alert variant="filled" severity="success">
                     Task is added successfully
                 </Alert>
@@ -182,39 +180,39 @@ export default function TodoList({ onHeightChange }) {
             {/* Snackbar for empty input notification */}
 
             {/* Snackbar for delete notification */}
-            <Snackbar 
-                open={deleteSnackbar} 
-                autoHideDuration={2000} 
-                onClose={handleCloseDeleteSnackbar} 
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+            <Snackbar
+                open={deleteSnackbar}
+                autoHideDuration={2000}
+                onClose={handleCloseDeleteSnackbar}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
                 <Alert variant="filled" severity="error">
-                    Task is deleted successfully 
+                    Task is deleted successfully
                 </Alert>
             </Snackbar>
             {/* Snackbar for delete notification */}
 
             {/* Snackbar for successful edit notification */}
-            <Snackbar 
-                open={editSnackbar} 
-                autoHideDuration={2000} 
-                onClose={handleCloseEditSnackbar} 
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            <Snackbar
+                open={editSnackbar}
+                autoHideDuration={2000}
+                onClose={handleCloseEditSnackbar}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
                 <Alert variant="filled" severity="info">
-                    Task is edited successfully 
+                    Task is edited successfully
                 </Alert>
             </Snackbar>
             {/* Snackbar for successful edit notification */}
 
             {/* Snackbar for completed notification */}
-            <Snackbar 
-                open={completedSnackbar} 
-                autoHideDuration={2000} 
-                onClose={handleCloseCompletedSnackbar} 
-                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            <Snackbar
+                open={completedSnackbar}
+                autoHideDuration={2000}
+                onClose={handleCloseCompletedSnackbar}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
                 <Alert variant="filled" severity="success">
-                    Task is added to completed tasks successfully 
+                    Task is added to completed tasks successfully
                 </Alert>
             </Snackbar>
             {/* Snackbar for completed notification */}
