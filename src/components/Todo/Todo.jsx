@@ -49,6 +49,7 @@ export default function Todo({ todo, handleCheck }) {
             return t;
         });
         setTodos(updatedTodos);
+        localStorage.setItem ("todos", JSON.stringify(updatedTodos))
         if (todo.isCompleted) 
             setCompletedSnackbar (true);
     }
@@ -75,23 +76,25 @@ export default function Todo({ todo, handleCheck }) {
         });
 
         setTodos(updatedTodos);
+        localStorage.setItem ("todos", JSON.stringify(updatedTodos))
         handleCloseEditDialog();
         setEditSnackbar (true);
     }
 
     function handleDeleteBtn(e) {
         e.stopPropagation();
-        const updatedArray = todos.filter((t) => t.id !== todo.id);
-        setTodos(updatedArray);
+        const updatedTodos = todos.filter((t) => t.id !== todo.id);
+        setTodos(updatedTodos);
+        localStorage.setItem ("todos", JSON.stringify(updatedTodos))
         setDeleteSnackbar(true);
     }
 
 
-    function handleEditModalOpen() {
+    function handleColorModal() {
         setColorModal(true);
     }
 
-    function handleEditModalClose() {
+    function handleCloseColorModal() {
         setColorModal(false);
     }
 
@@ -103,7 +106,8 @@ export default function Todo({ todo, handleCheck }) {
             return t;
         });
         setTodos(updatedTodos);
-        handleEditModalClose();
+        localStorage.setItem ("todos", JSON.stringify(updatedTodos))
+        handleCloseColorModal();
     }
 
     return (
@@ -112,9 +116,13 @@ export default function Todo({ todo, handleCheck }) {
                 container 
                 style={{ backgroundColor, cursor: "pointer" }} 
                 className="text-white mt-4 rounded items-center todo-item" 
-                onClick={handleEditModalOpen}
             >
-                <Grid md={8} xs={8} className='input flex h-full p-4 pr-7'>
+                <Grid 
+                    md={8} 
+                    xs={8} 
+                    className='input flex h-full p-4 pr-7'
+                    onClick={handleColorModal}
+                >
                     <Typography variant="body1" style={{ wordBreak: 'break-word' }}>
                         {todo.input}
                     </Typography>
@@ -153,11 +161,11 @@ export default function Todo({ todo, handleCheck }) {
 
             <Modal
                 open={colorModal}
-                onClose={handleEditModalClose}
+                onClose={handleCloseColorModal}
                 aria-labelledby="color-picker-modal"
                 aria-describedby="color-picker-for-todo"
             >
-                <Box sx={style} onClick={(e) => e.stopPropagation()}>
+                <Box sx={style}>
                     <h1 id="color-picker-modal" className='mb-4 text-xl font-bold'>
                         Pick A Color
                     </h1>

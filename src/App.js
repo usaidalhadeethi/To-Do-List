@@ -1,22 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import './App.css';
 import { HiMoon, HiSun } from 'react-icons/hi';
 import TodoList from './components/Todolist/TodoList';
 import { TodosContext } from './contexts/TodosContext';
-import { v4 as uuidv4 } from 'uuid';
 
-const todosArray = [
-    {
-        id: uuidv4(),
-        input: 'Learn React',
-        isCompleted: false,
-    },
-    {
-        id: uuidv4(),
-        input: 'Yes',
-        isCompleted: false
-    }
-];
+const todosArray = [];
 
 function App() {
     const [todos, setTodos] = useState(todosArray);
@@ -27,11 +15,23 @@ function App() {
     const [dark, setDark] = useState(false);
     const [isCentered, setIsCentered] = useState(false);
 
-    const darkModeHandler = () => {
-        setDark(!dark);
-        document.body.classList.toggle("dark");
-    }
+    useEffect(() => {
+        const darkMode = JSON.parse(localStorage.getItem("dark"));
+        if (darkMode !== null) {
+            setDark(darkMode);
+            if (darkMode) document.body.classList.add("dark");
+        }
+    }, []);
 
+    const darkModeHandler = () => {
+        setDark((prevDark) => {
+            const newDark = !prevDark;
+            localStorage.setItem("dark", JSON.stringify(newDark));
+            if (newDark) document.body.classList.add("dark");
+            else document.body.classList.remove("dark");
+            return newDark;
+        });
+    };
     const handleTodoListHeightChange = (height) => {
         setIsCentered(height <= window.innerHeight);
     };

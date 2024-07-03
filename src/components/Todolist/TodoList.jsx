@@ -22,6 +22,11 @@ export default function TodoList({ onHeightChange }) {
     const [snackbarAdd, setSnackbarAdd] = useState(false);
     const [todoInput, setTodoInput] = useState("");
 
+    useEffect (() => {
+        const storageTodos = JSON.parse(localStorage.getItem('todos'));
+        setTodos (storageTodos);
+    }, [])
+
     function handleAdd() {
         if (todoInput === "") {
             setSnackbarEmpty(true);
@@ -30,9 +35,10 @@ export default function TodoList({ onHeightChange }) {
                 id: uuidv4(),
                 input: todoInput,
                 isCompleted: false,
-                backgroundColor: ""
             };
-            setTodos([...todos, newTodo]);
+            const updatedTodos = [...todos, newTodo];
+            setTodos(updatedTodos);
+            localStorage.setItem ("todos", JSON.stringify(updatedTodos))
             setTodoInput("");
             setSnackbarAdd(true);
         }
@@ -40,6 +46,7 @@ export default function TodoList({ onHeightChange }) {
 
 
     const filteredTodos = todos.filter(todo => {
+        console.log("rere");
         if (selectedFilter === 'done') return todo.isCompleted;
         else if (selectedFilter === 'not-done') return !todo.isCompleted;
         else return true;
