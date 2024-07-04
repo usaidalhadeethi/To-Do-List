@@ -1,81 +1,96 @@
-Todo Management Application
+Todo List Management Application
 
-Table of Contents
-
-    Overview
-    Features
-    Getting Started
-    Usage
-    Screenshots
-    Technologies
-    Contributing
-    License
-
-Overview
-
-This project is a Todo Management Application built with React, Material-UI, and Tailwind CSS. It allows users to create, edit, delete, and manage their todo tasks efficiently. The application also provides functionalities to mark tasks as completed and change the background color of each todo item for better visual organization.
+Welcome to the Todo List Management Application! This project is built with React, Material-UI, and Tailwind CSS, and it provides an interactive and efficient way to manage your todo tasks.
 Features
 
-    Add Todo: Easily add new tasks to your todo list.
-    Edit Todo: Edit existing tasks to update their content.
-    Delete Todo: Remove tasks that are no longer needed.
-    Complete Todo: Mark tasks as completed.
-    Change Background Color: Customize the background color of each todo item.
-    Responsive Design: The application is fully responsive and works well on both desktop and mobile devices.
+    Add Todos: Easily add new tasks to your todo list.
+    Edit Todos: Edit existing tasks to update their information.
+    Delete Todos: Remove tasks that are no longer needed.
+    Mark as Completed: Mark tasks as completed to keep track of your progress.
+    Change Todo Background Color: Customize the background color of each todo item.
+    Snackbar Notifications: Get instant feedback with snackbar notifications for actions like saving and deleting todos.
+
+Technologies Used
+
+    React: A JavaScript library for building user interfaces.
+    Material-UI: A popular React UI framework that provides pre-designed components.
+    Tailwind CSS: A utility-first CSS framework for rapid UI development.
+    React Context API: For global state management.
+
+Project Structure
+
+The project structure is organized as follows:
+
+css
+
+src/
+├── components/
+│   ├── Todo/
+│   │   ├── Todo.jsx
+│   │   ├── Todo.css
+│   ├── Todolist/
+│   │   ├── TodoList.jsx
+├── contexts/
+│   ├── TodosContext.js
+├── App.jsx
+├── index.js
+
+    components/: Contains the main UI components like Todo and TodoList.
+    contexts/: Contains the context for managing the global state.
+    App.jsx: The root component that brings everything together.
+    index.js: The entry point of the application.
 
 Getting Started
 
-To get a local copy up and running, follow these simple steps:
-Prerequisites
+To get started with the project, follow these steps:
 
-    Node.js and npm installed on your machine
+    Clone the repository:
 
-Installation
+    bash
 
-    Clone the repo
+git clone https://github.com/your-username/todo-list-management.git
+cd todo-list-management
 
-    sh
+Install dependencies:
 
-git clone https://github.com/your_username/todo-management-app.git
+bash
 
-Navigate to the project directory
+npm install
 
-sh
+Start the development server:
 
-cd todo-management-app
-
-Install NPM packages
-
-sh
-
-    npm install
-
-Running the Application
-
-    Start the development server
-
-    sh
+bash
 
     npm start
 
-    Open your browser and go to http://localhost:3000
+    Open your browser and navigate to http://localhost:3000 to see the application in action.
 
 Usage
+Adding a Todo
 
-    Add a Task: Click on the "Add Task" button, enter the task details, and click "Save".
-    Edit a Task: Click the edit icon (✏️) next to a task, modify the details, and click "Save".
-    Delete a Task: Click the delete icon (🗑️) next to a task to remove it.
-    Complete a Task: Click the checkmark icon (✔️) next to a task to mark it as completed.
-    Change Background Color: Click on a task to open the color picker modal and choose a new background color.
+    Type your task in the input field at the top.
+    Press Enter or click the Add button.
+
+Editing a Todo
+
+    Click the Edit icon (pencil) next to the todo you want to edit.
+    Modify the task information in the dialog that appears.
+    Click Save to apply the changes.
+
+Deleting a Todo
+
+    Click the Delete icon (trash bin) next to the todo you want to delete.
+    Confirm the deletion if prompted.
+
+Marking a Todo as Completed
+
+    Click the Done icon (checkmark) next to the todo you want to mark as completed.
+
+Changing Todo Background Color
+
+    Click on a todo item to open the color picker modal.
+    Select a color to change the background of the todo item.
 
 Screenshots
 
-
-
-Technologies
-
-    React: A JavaScript library for building user interfaces.
-    Material-UI: A popular React UI framework.
-    Tailwind CSS: A utility-first CSS framework.
-    Context API: For state management.
-    React Hooks: For managing component state and lifecycle.
+Include some screenshots of your application here to give users a visual overview.
