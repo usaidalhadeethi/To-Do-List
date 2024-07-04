@@ -3,6 +3,7 @@
 Welcome to the Todo List Management Application! This project is built with React, Material-UI, and Tailwind CSS, providing an interactive and efficient way to manage your todo tasks.
 
 
+
 ## Features:
 
 * **Add Todos:** Easily add new tasks to your todo list.
@@ -13,12 +14,14 @@ Welcome to the Todo List Management Application! This project is built with Reac
 * **Snackbar Notifications:** Get instant feedback with snackbar notifications for actions like saving and deleting todos.
 
 
+
 ## Technologies Used
 
 * **React:** A JavaScript library for building user interfaces.
 * **Material-UI:** A popular React UI framework that provides pre-designed components.
 * **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
 * **React Context API:** For global state management.
+
 
 
 ## Getting Started
