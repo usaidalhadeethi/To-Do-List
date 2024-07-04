@@ -3,7 +3,7 @@
 Welcome to the Todo List Management Application! This project is built with React, Material-UI, and Tailwind CSS, providing an interactive and efficient way to manage your todo tasks.
 
 
-##Features:**
+## Features:
 
 * **Add Todos:** Easily add new tasks to your todo list.
 * **Edit Todos:** Edit existing tasks to update their information.
@@ -23,7 +23,7 @@ Welcome to the Todo List Management Application! This project is built with Reac
 
 ## Getting Started
 
-```markdown
+markdown
 
 To get started with the project, follow these steps:
 
@@ -38,11 +38,11 @@ Navigate to the project directory:
 
 Install dependencies:
    
-```bash
+```
 
    npm install
 
-
+```
 Start the development server:
    Bash
 
