@@ -37,7 +37,8 @@ Navigate to the project directory:
 
 
 Install dependencies:
-   Bash
+   
+```bash
 
    npm install
 
