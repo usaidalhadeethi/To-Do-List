@@ -19,6 +19,7 @@ Welcome to the Todo List Management Application! This project is built with Reac
 * **Material-UI:** A popular React UI framework that provides pre-designed components.
 * **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
 * **React Context API:** For global state management.
+* **Storage**: Local Storage for data persistence.
 
 
 ## Getting Started
