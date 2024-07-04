@@ -31,25 +31,22 @@ To get started with the project, follow these steps:
 ```
    git clone https://github.com/your-username/todo-list-management.git
 ```
-Navigate to the project directory:
 
+2. Navigate to the project directory:
+```
     cd todo-list-management
-
-
-Install dependencies:
-   
 ```
 
+3. Install dependencies: 
+```
    npm install
-
 ```
+
 Start the development server:
-   Bash
-
+```
    npm start
-
+```
 
 Open your browser and navigate to http://localhost:3000 to see the application in action.
 
 Note: Replace https://github.com/your-username/todo-list-management.git with the actual URL of your repository.
-his provides a clear and concise README file for your project on GitHub. Feel free to customize it further based on your specific needs.
