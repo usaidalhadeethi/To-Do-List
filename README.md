@@ -54,6 +54,7 @@ Note: Replace https://github.com/your-username/todo-list-management.git with the
 
 
 ![Screenshot 2024-07-01 102321](https://github.com/usaidalhadeethi/todo-list/assets/101979002/8ef58423-a06b-42ab-8149-5b94b652746d)
+![Screenshot 2024-07-04 112035](https://github.com/usaidalhadeethi/todo-list/assets/101979002/a4aad7f5-73d4-47b1-bfac-e63c75385719)
 ![Screenshot 2024-07-04 111439](https://github.com/usaidalhadeethi/todo-list/assets/101979002/254c1237-4db7-4963-abcc-debf2d768572)
 ![Screenshot 2024-07-04 111526](https://github.com/usaidalhadeethi/todo-list/assets/101979002/62c23a06-7632-483a-b9ee-14894f93e81e)
 ![Screenshot 2024-07-04 111555](https://github.com/usaidalhadeethi/todo-list/assets/101979002/8a03bc9c-8705-4b35-8537-a46dd4dc1475)
